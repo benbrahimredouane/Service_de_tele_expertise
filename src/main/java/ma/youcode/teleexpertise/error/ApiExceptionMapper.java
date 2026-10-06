@@ -17,6 +17,8 @@ public class ApiExceptionMapper implements ExceptionMapper<Throwable> {
         if (exception instanceof WebApplicationException webException) {
             original = webException.getResponse();
             status = original.getStatus();
+        } else if (exception instanceof IllegalArgumentException) {
+            status = 400;
         }
 
         String error;
@@ -25,7 +27,9 @@ public class ApiExceptionMapper implements ExceptionMapper<Throwable> {
         switch (status) {
             case 400 -> {
                 error = "BAD_REQUEST";
-                message = "Requête invalide";
+                message = exception instanceof IllegalArgumentException
+                        ? exception.getMessage()
+                        : "Requête invalide";
             }
             case 401 -> {
                 error = "UNAUTHORIZED";
