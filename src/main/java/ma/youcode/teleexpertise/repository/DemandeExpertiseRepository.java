@@ -8,4 +8,8 @@ public interface DemandeExpertiseRepository {
     DemandeExpertise save(DemandeExpertise demande);
 
     Optional<DemandeExpertise> findByConsultationId(int consultationId);
+
+    boolean existsConsultationById(int consultationId);
+
+    boolean existsSpecialisteById(int specialisteId);
 }

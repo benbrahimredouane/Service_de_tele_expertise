@@ -2,8 +2,33 @@ package ma.youcode.teleexpertise.service;
 
 import ma.youcode.teleexpertise.dto.CreerDemandeRequest;
 import ma.youcode.teleexpertise.model.Priorite;
+import jakarta.ws.rs.NotFoundException;
+import ma.youcode.teleexpertise.repository.DemandeExpertiseRepository;
 
 public class DemandeService {
+
+    private final DemandeExpertiseRepository repository;
+
+    public DemandeService(DemandeExpertiseRepository repository) {
+        this.repository = repository;
+    }
+
+    public void verifierReferences(CreerDemandeRequest demande) {
+        if (demande.getConsultationId() == null
+                || demande.getSpecialisteId() == null) {
+            throw new IllegalArgumentException(
+                    "La consultation et le spécialiste sont obligatoires"
+            );
+        }
+
+        if (!repository.existsConsultationById(demande.getConsultationId())) {
+            throw new NotFoundException("Consultation introuvable");
+        }
+
+        if (!repository.existsSpecialisteById(demande.getSpecialisteId())) {
+            throw new NotFoundException("Spécialiste introuvable");
+        }
+    }
 
     public Priorite valider(CreerDemandeRequest demande) {
         if (demande == null) {

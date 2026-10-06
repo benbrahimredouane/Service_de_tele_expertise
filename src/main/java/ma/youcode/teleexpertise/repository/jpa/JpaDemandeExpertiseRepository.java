@@ -8,6 +8,8 @@ import jakarta.persistence.EntityTransaction;
 
 import ma.youcode.teleexpertise.model.DemandeExpertise;
 import ma.youcode.teleexpertise.repository.DemandeExpertiseRepository;
+import ma.youcode.teleexpertise.model.Consultation;
+import ma.youcode.teleexpertise.model.Specialiste;
 
 public class JpaDemandeExpertiseRepository implements DemandeExpertiseRepository {
 
@@ -55,4 +57,24 @@ public class JpaDemandeExpertiseRepository implements DemandeExpertiseRepository
             em.close();
         }
     }
+
+         @Override
+        public boolean existsConsultationById(int consultationId) {
+            EntityManager em = entityManagerFactory.createEntityManager();
+            try {
+                return em.find(Consultation.class, consultationId) != null;
+            } finally {
+                em.close();
+            }
+        }
+
+        @Override
+        public boolean existsSpecialisteById(int specialisteId) {
+            EntityManager em = entityManagerFactory.createEntityManager();
+            try {
+                return em.find(Specialiste.class, specialisteId) != null;
+            } finally {
+                em.close();
+            }
+        }
 }
