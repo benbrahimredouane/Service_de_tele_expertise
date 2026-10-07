@@ -16,6 +16,9 @@ public class SpecialisteRepository {
         this.entityManagerFactory =
                 Persistence.createEntityManagerFactory("teleexpertisePU");
     }
+        public SpecialisteRepository(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 
     public void save(Specialiste specialiste) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();

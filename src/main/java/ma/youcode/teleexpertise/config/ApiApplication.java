@@ -7,6 +7,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import ma.youcode.teleexpertise.error.ApiExceptionMapper;
 import ma.youcode.teleexpertise.resource.PingResource;
 import ma.youcode.teleexpertise.resource.DemandeResource;
+import ma.youcode.teleexpertise.resource.SpecialisteResource;
 
 @ApplicationPath("/api")
 public class ApiApplication extends ResourceConfig {
@@ -16,5 +17,6 @@ public class ApiApplication extends ResourceConfig {
         register(PingResource.class);
         register(ApiExceptionMapper.class);
         register(DemandeResource.class);
+        register(SpecialisteResource.class);
     }
 }

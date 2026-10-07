@@ -8,7 +8,8 @@ public class Utilisateur {
 
     public enum Role {
         INFIRMIER,
-        GENERALISTE
+        GENERALISTE,
+        SPECIALISTE
     }
 
     @Id

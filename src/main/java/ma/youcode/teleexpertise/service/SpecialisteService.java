@@ -14,6 +14,9 @@ public class SpecialisteService {
     public SpecialisteService(SpecialisteRepository repository) {
         this.repository = repository;
     }
+    public List<Specialiste> ListerAll(){
+        return repository.findAll();
+    }
 
     public List<Specialiste> listerParSpecialite(Specialite specialite) {
         if (specialite == null) {
