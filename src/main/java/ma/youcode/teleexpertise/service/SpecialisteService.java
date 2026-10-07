@@ -19,7 +19,7 @@ public class SpecialisteService {
     }
 
     public List<Specialiste> listerParSpecialite(Specialite specialite) {
-        if (specialite == null) {
+        if (specialite == null ) {
             throw new IllegalArgumentException("La spécialité est obligatoire");
         }
 

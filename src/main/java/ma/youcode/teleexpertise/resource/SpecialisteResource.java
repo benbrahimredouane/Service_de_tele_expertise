@@ -1,5 +1,7 @@
 package ma.youcode.teleexpertise.resource;
 
+import java.util.Map;
+
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.servlet.ServletContext;
 import jakarta.ws.rs.GET;
@@ -22,22 +24,26 @@ public class SpecialisteResource {
     @Context
     private ServletContext servletContext;
 
-
     @GET
     public Response lister(@QueryParam("specialite") Specialite specialite) {
-        EntityManagerFactory emf = (EntityManagerFactory)
-                servletContext.getAttribute(JpaLifecycle.EMF_KEY);
+        EntityManagerFactory emf = (EntityManagerFactory) servletContext.getAttribute(JpaLifecycle.EMF_KEY);
 
         SpecialisteService service = new SpecialisteService(
-                new SpecialisteRepository(emf)
-        );
+                new SpecialisteRepository(emf));
 
-        if(specialite != null){
-            return Response.ok(service.listerParSpecialite(specialite)).build();
+        if (specialite != null) {
+            try {
+                Specialite specialite2 = Specialite.valueOf(specialite.toString().trim().toUpperCase());
+                return Response.ok(service.listerParSpecialite(specialite2)).build();
+
+            } catch (IllegalArgumentException e) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity(Map.of("error: ", e.getMessage()))
+                        .build();
+            }
         }
-        else{
-            return Response.ok(service.ListerAll()).build();
-        }
-        
+
+        return Response.ok(service.ListerAll()).build();
+
     }
 }

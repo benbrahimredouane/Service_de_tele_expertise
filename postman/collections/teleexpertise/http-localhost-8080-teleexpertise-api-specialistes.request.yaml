@@ -1,8 +1,8 @@
 $kind: http-request
 name: http://localhost:8080/teleexpertise/api/specialistes
 description: ""
-url: http://localhost:8080/teleexpertise/api/specialistes?specialite=CARDIOLOGIE
+url: http://localhost:8080/teleexpertise/api/specialistes?specialite=CARDIOLOGI
 method: GET
 queryParams:
-  specialite: CARDIOLOGIE
+  specialite: CARDIOLOGI
 order: 580237455779577
