@@ -1,6 +1,10 @@
 package ma.youcode.teleexpertise.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
+
+
 
 @Entity
 @Table(name = "specialistes")
@@ -17,6 +21,17 @@ public class Specialiste {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Specialite specialite;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private Long tarif;
+    
+    public Long getTarif() {
+        return tarif;
+    }
+
+     public void setTarif(Long tarif) {
+         this.tarif = tarif;
+     }
 
     public Specialiste() {
     }
