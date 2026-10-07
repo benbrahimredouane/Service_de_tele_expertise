@@ -59,22 +59,34 @@ public class JpaDemandeExpertiseRepository implements DemandeExpertiseRepository
     }
 
          @Override
-        public boolean existsConsultationById(int consultationId) {
-            EntityManager em = entityManagerFactory.createEntityManager();
-            try {
-                return em.find(Consultation.class, consultationId) != null;
-            } finally {
-                em.close();
-            }
-        }
+public boolean existsConsultationById(int consultationId) {
+    EntityManager em = entityManagerFactory.createEntityManager();
+    try {
+        Number count = (Number) em.createNativeQuery(
+                "SELECT COUNT(*) FROM consultations WHERE id = ?1"
+        )
+        .setParameter(1, consultationId)
+        .getSingleResult();
 
-        @Override
-        public boolean existsSpecialisteById(int specialisteId) {
-            EntityManager em = entityManagerFactory.createEntityManager();
-            try {
-                return em.find(Specialiste.class, specialisteId) != null;
-            } finally {
-                em.close();
-            }
-        }
+        return count.longValue() > 0;
+    } finally {
+        em.close();
+    }
+}
+
+@Override
+public boolean existsSpecialisteById(int specialisteId) {
+    EntityManager em = entityManagerFactory.createEntityManager();
+    try {
+        Number count = (Number) em.createNativeQuery(
+                "SELECT COUNT(*) FROM specialistes WHERE id = ?1"
+        )
+        .setParameter(1, specialisteId)
+        .getSingleResult();
+
+        return count.longValue() > 0;
+    } finally {
+        em.close();
+    }
+}
 }

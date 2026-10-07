@@ -10,9 +10,11 @@
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <properties>
+        <class>ma.youcode.teleexpertise.model.Consultation</class>
+        <class>ma.youcode.teleexpertise.model.Specialiste</class>
+        <class>ma.youcode.teleexpertise.model.DemandeExpertise</class>
 
-            <!-- Database connection -->
+        <properties>
             <property name="jakarta.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver"/>
 
@@ -23,9 +25,8 @@
                       value="root"/>
 
             <property name="jakarta.persistence.jdbc.password"
-                      value="YOUR_PASSWORD"/>
+                      value=""/>
 
-            <!-- Hibernate -->
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.MySQLDialect"/>
 
@@ -34,7 +35,6 @@
 
             <property name="hibernate.format_sql"
                       value="true"/>
-
         </properties>
 
     </persistence-unit>
