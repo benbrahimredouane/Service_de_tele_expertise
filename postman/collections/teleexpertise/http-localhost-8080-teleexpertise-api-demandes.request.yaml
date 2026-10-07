@@ -1,0 +1,19 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/demandes
+description: ""
+url: http://localhost:8080/teleexpertise/api/demandes
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"consultationId\": 1,\r
+
+    \  \"specialisteId\": 1,\r
+
+    \  \"question\": \"\",\r
+
+    \  \"priorite\": \"NORMALE\"\r
+
+    }"
+order: 1791384378399

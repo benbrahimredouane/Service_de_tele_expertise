@@ -6,5 +6,7 @@ public enum Specialite {
     NEUROLOGIE,
     PEDIATRIE,
     GYNECOLOGIE,
-    OPHTALMOLOGIE
+    OPHTALMOLOGIE,
+    PNEUMOLOGIE,
+    ENDOCRINOLOGIE
 }
