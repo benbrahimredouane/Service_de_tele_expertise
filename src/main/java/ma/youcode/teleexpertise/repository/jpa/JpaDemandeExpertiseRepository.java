@@ -74,6 +74,7 @@ public boolean existsConsultationById(int consultationId) {
     }
 }
 
+
 @Override
 public boolean existsSpecialisteById(int specialisteId) {
     EntityManager em = entityManagerFactory.createEntityManager();

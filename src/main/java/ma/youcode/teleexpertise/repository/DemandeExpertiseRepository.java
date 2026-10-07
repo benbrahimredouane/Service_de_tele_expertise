@@ -12,4 +12,5 @@ public interface DemandeExpertiseRepository {
     boolean existsConsultationById(int consultationId);
 
     boolean existsSpecialisteById(int specialisteId);
+    
 }
