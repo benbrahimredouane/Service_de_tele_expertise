@@ -5,6 +5,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import ma.youcode.teleexpertise.error.ApiExceptionMapper;
+import ma.youcode.teleexpertise.filter.BasicAuthFilter;
 import ma.youcode.teleexpertise.resource.PingResource;
 import ma.youcode.teleexpertise.resource.DemandeResource;
 import ma.youcode.teleexpertise.resource.SpecialisteResource;
@@ -18,5 +19,6 @@ public class ApiApplication extends ResourceConfig {
         register(ApiExceptionMapper.class);
         register(DemandeResource.class);
         register(SpecialisteResource.class);
+        register(BasicAuthFilter.class);
     }
 }

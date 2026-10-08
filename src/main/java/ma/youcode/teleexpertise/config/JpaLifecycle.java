@@ -6,6 +6,9 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
+import ma.youcode.teleexpertise.repository.jpa.JpaUtilisateurRepository;
+import ma.youcode.teleexpertise.service.AuthService;
+
 @WebListener
 public class JpaLifecycle implements ServletContextListener {
 
@@ -17,7 +20,13 @@ public class JpaLifecycle implements ServletContextListener {
                 Persistence.createEntityManagerFactory("teleexpertisePU");
 
         event.getServletContext().setAttribute(EMF_KEY, emf);
+
+        AuthService authService =
+                new AuthService(new JpaUtilisateurRepository(emf));
+
+        event.getServletContext().setAttribute("authService", authService);
     }
+    
 
     @Override
     public void contextDestroyed(ServletContextEvent event) {
