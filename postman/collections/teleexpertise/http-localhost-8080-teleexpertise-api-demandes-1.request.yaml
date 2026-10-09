@@ -1,0 +1,10 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/demandes
+url: http://localhost:8080/teleexpertise/api/demandes
+method: GET
+auth:
+  type: basic
+  credentials:
+    username: sara@gmail.com
+    password: password
+order: 580237455781577

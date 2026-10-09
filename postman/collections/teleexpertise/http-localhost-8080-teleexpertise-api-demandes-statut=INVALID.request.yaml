@@ -1,0 +1,5 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/demandes?statut=INVALID
+url: ""
+method: GET
+order: 580237455784577

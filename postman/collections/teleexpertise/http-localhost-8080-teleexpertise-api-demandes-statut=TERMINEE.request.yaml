@@ -1,0 +1,12 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/demandes?statut=TERMINEE
+url: http://localhost:8080/teleexpertise/api/demandes?statut=TERMINEE
+method: GET
+queryParams:
+  statut: TERMINEE
+auth:
+  type: basic
+  credentials:
+    username: sara@gmail.com
+    password: password
+order: 580237455783577

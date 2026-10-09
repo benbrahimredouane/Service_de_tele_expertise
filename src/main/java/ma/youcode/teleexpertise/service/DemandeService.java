@@ -2,6 +2,11 @@ package ma.youcode.teleexpertise.service;
 
 import ma.youcode.teleexpertise.dto.CreerDemandeRequest;
 import ma.youcode.teleexpertise.model.Priorite;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import jakarta.ws.rs.NotFoundException;
 import ma.youcode.teleexpertise.repository.DemandeExpertiseRepository;
 import ma.youcode.teleexpertise.model.DemandeExpertise;
@@ -66,4 +71,36 @@ public class DemandeService {
 
             return repository.save(demande);
         }
+        
+public List<DemandeExpertise> listerParSpecialiste(
+        int specialisteId,
+        String statutDemande
+) {
+    List<DemandeExpertise> demandes =
+            repository.findBySpecialisteId(specialisteId);
+
+    StatutDemande statut = null;
+
+    if (statutDemande != null && !statutDemande.isBlank()) {
+        try {
+            statut = StatutDemande.valueOf(
+                    statutDemande.trim().toUpperCase()
+            );
+        } catch (IllegalArgumentException e) {
+            throw new jakarta.ws.rs.BadRequestException(
+                    "Statut invalide. Valeurs acceptées : EN_ATTENTE, TERMINEE"
+            );
+        }
+    }
+
+    final StatutDemande statutFiltre = statut;
+
+    return demandes.stream()
+            .filter(d -> statutFiltre == null
+                    || d.getStatut() == statutFiltre)
+            .sorted(Comparator.comparing(
+                    d -> d.getPriorite() != Priorite.URGENTE
+            ))
+            .collect(Collectors.toList());
+}
 }   
