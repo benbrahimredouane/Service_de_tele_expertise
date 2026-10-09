@@ -1,8 +1,11 @@
 $kind: http-request
 name: http://localhost:8080/teleexpertise/api/specialistes
 description: ""
-url: http://localhost:8080/teleexpertise/api/specialistes?specialite=CARDIOLOGI
+url: http://localhost:8080/teleexpertise/api/specialistes
 method: GET
-queryParams:
-  specialite: CARDIOLOGI
+auth:
+  type: basic
+  credentials:
+    username: ahmed@gmail.com
+    password: password
 order: 580237455779577

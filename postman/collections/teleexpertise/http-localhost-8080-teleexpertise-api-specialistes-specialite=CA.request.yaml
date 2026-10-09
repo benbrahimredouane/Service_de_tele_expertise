@@ -1,0 +1,12 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/specialistes?specialite=CARDIOLOGIE
+url: http://localhost:8080/teleexpertise/api/specialistes?specialite=CARDIOLOGIE
+method: GET
+queryParams:
+  specialite: CARDIOLOGIE
+auth:
+  type: basic
+  credentials:
+    username: sara@gmail.com
+    password: password
+order: 580237455780577
