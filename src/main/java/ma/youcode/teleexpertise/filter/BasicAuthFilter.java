@@ -6,19 +6,21 @@ import java.security.Principal;
 import java.util.Base64;
 import java.util.Optional;
 
-import org.hibernate.grammars.hql.HqlParser.SecondContext;
-
+import jakarta.annotation.Priority;
 import jakarta.servlet.ServletContext;
+import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.ext.Provider;
+
 import ma.youcode.teleexpertise.model.Utilisateur;
 import ma.youcode.teleexpertise.service.AuthService;
 
 @Provider
+@Priority(Priorities.AUTHENTICATION)
 public class BasicAuthFilter implements ContainerRequestFilter {
 
     @Context
@@ -55,17 +57,22 @@ public class BasicAuthFilter implements ContainerRequestFilter {
         String email = parties[0];
         String motDePasse = parties[1];
 
-        AuthService authService = (AuthService) servletContext.getAttribute("authService");
+        AuthService authService =
+                (AuthService) servletContext.getAttribute("authService");
 
-        if (authService.authentifier(email, motDePasse).isEmpty()) {
+        Optional<Utilisateur> resultat =
+                authService.authentifier(email, motDePasse);
+
+        if (resultat.isEmpty()) {
             refuser(request);
+            return;
         }
 
-        Utilisateur utilisateur = authService.authentifier(email, motDePasse).get();
-
-        SecurityContext contexteOriginal = request.getSecurityContext();
+        Utilisateur utilisateur = resultat.get();
+        SecurityContext ancienContext = request.getSecurityContext();
 
         request.setSecurityContext(new SecurityContext() {
+
             @Override
             public Principal getUserPrincipal() {
                 return () -> utilisateur.getEmail();
@@ -79,29 +86,21 @@ public class BasicAuthFilter implements ContainerRequestFilter {
 
             @Override
             public boolean isSecure() {
-                return contexteOriginal.isSecure();
+                return ancienContext.isSecure();
             }
 
             @Override
             public String getAuthenticationScheme() {
                 return SecurityContext.BASIC_AUTH;
             }
-
         });
-
     }
 
     private void refuser(ContainerRequestContext request) {
-        Response reponse = Response.status(Response.Status.UNAUTHORIZED)
+        Response reponse = Response.status(401)
                 .header("WWW-Authenticate", "Basic realm=\"teleexpertise\"")
-                .type(jakarta.ws.rs.core.MediaType.APPLICATION_JSON)
-                .entity(new ma.youcode.teleexpertise.error.ApiError(
-                        401,
-                        "UNAUTHORIZED",
-                        "Identifiants absents ou incorrects"))
                 .build();
 
         request.abortWith(reponse);
     }
-
 }
