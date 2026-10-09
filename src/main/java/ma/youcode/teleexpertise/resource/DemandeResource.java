@@ -78,6 +78,10 @@ public class DemandeResource {
 
        
         if (securityContext.isUserInRole("SPECIALISTE")) {
+                if(securityContext.getUserPrincipal() == null){
+                        return Response.status(Response.Status.UNAUTHORIZED).build();
+                        
+                }
 
             SpecialisteRepository specialisteRepository =
                     new SpecialisteRepository(emf);
@@ -115,7 +119,7 @@ public class DemandeResource {
       
         if (securityContext.isUserInRole("GENERALISTE")) {
 
-            if (consultationId == null) {
+            if (consultationId == null || consultationId <= 0) {
                 throw new BadRequestException(
                         "Le paramètre consultationId est obligatoire"
                 );
