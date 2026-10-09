@@ -5,7 +5,6 @@ import ma.youcode.teleexpertise.model.Priorite;
 import jakarta.ws.rs.NotFoundException;
 import ma.youcode.teleexpertise.repository.DemandeExpertiseRepository;
 import ma.youcode.teleexpertise.model.DemandeExpertise;
-import ma.youcode.teleexpertise.model.Priorite;
 import ma.youcode.teleexpertise.model.StatutDemande;
 
 public class DemandeService {
@@ -54,7 +53,7 @@ public class DemandeService {
         }
     }
             public DemandeExpertise creer(CreerDemandeRequest request) {
-                
+
             Priorite priorite = valider(request);
             verifierReferences(request);
 

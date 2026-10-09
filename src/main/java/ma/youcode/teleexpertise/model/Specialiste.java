@@ -1,6 +1,5 @@
 package ma.youcode.teleexpertise.model;
 
-import java.math.BigDecimal;
 
 import jakarta.persistence.*;
 

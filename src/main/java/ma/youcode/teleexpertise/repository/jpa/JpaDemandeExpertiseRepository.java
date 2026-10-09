@@ -8,8 +8,7 @@ import jakarta.persistence.EntityTransaction;
 
 import ma.youcode.teleexpertise.model.DemandeExpertise;
 import ma.youcode.teleexpertise.repository.DemandeExpertiseRepository;
-import ma.youcode.teleexpertise.model.Consultation;
-import ma.youcode.teleexpertise.model.Specialiste;
+
 
 public class JpaDemandeExpertiseRepository implements DemandeExpertiseRepository {
 

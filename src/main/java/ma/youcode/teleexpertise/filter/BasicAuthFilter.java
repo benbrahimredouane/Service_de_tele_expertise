@@ -97,10 +97,16 @@ public class BasicAuthFilter implements ContainerRequestFilter {
     }
 
     private void refuser(ContainerRequestContext request) {
-        Response reponse = Response.status(401)
-                .header("WWW-Authenticate", "Basic realm=\"teleexpertise\"")
-                .build();
+    Response reponse = Response.status(Response.Status.UNAUTHORIZED)
+            .header("WWW-Authenticate", "Basic realm=\"teleexpertise\"")
+            .type(jakarta.ws.rs.core.MediaType.APPLICATION_JSON)
+            .entity(new ma.youcode.teleexpertise.error.ApiError(
+                    401,
+                    "UNAUTHORIZED",
+                    "Identifiants absents ou incorrects"
+            ))
+            .build();
 
-        request.abortWith(reponse);
-    }
+    request.abortWith(reponse);
+}
 }
