@@ -18,6 +18,8 @@ import ma.youcode.teleexpertise.model.DemandeExpertise;
 import ma.youcode.teleexpertise.repository.jpa.JpaDemandeExpertiseRepository;
 import ma.youcode.teleexpertise.service.DemandeService;
 
+import jakarta.annotation.security.RolesAllowed;
+
 @Path("/demandes")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -27,6 +29,7 @@ public class DemandeResource {
     private ServletContext servletContext;
 
     @POST
+    @RolesAllowed("GENERALISTE")
     public Response creer(CreerDemandeRequest request) {
         EntityManagerFactory emf = (EntityManagerFactory)
                 servletContext.getAttribute(JpaLifecycle.EMF_KEY);
