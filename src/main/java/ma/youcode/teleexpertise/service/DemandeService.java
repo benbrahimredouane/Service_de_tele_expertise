@@ -103,4 +103,11 @@ public List<DemandeExpertise> listerParSpecialiste(
             ))
             .collect(Collectors.toList());
 }
+
+public DemandeExpertise trouverParConsultation(int consultationId) {
+    return repository.findByConsultationId(consultationId)
+            .orElseThrow(() -> new NotFoundException(
+                    "Aucune demande trouvée pour cette consultation"
+            ));
+}
 }   
