@@ -10,6 +10,7 @@ import ma.youcode.teleexpertise.model.DemandeExpertise;
 import ma.youcode.teleexpertise.repository.DemandeExpertiseRepository;
 
 
+
 public class JpaDemandeExpertiseRepository implements DemandeExpertiseRepository {
 
     private final EntityManagerFactory entityManagerFactory;
@@ -85,6 +86,41 @@ public boolean existsSpecialisteById(int specialisteId) {
         .getSingleResult();
 
         return count.longValue() > 0;
+    } finally {
+        em.close();
+    }
+}
+
+
+        @Override
+public Optional<DemandeExpertise> findById(int id) {
+    EntityManager em = entityManagerFactory.createEntityManager();
+
+    try {
+        DemandeExpertise demande = em.find(DemandeExpertise.class, id);
+        return Optional.ofNullable(demande);
+    } finally {
+        em.close();
+    }
+}
+
+@Override
+public DemandeExpertise update(DemandeExpertise demande) {
+    EntityManager em = entityManagerFactory.createEntityManager();
+    EntityTransaction transaction = em.getTransaction();
+
+    try {
+        transaction.begin();
+
+        DemandeExpertise demandeModifiee = em.merge(demande);
+
+        transaction.commit();
+        return demandeModifiee;
+    } catch (RuntimeException e) {
+        if (transaction.isActive()) {
+            transaction.rollback();
+        }
+        throw e;
     } finally {
         em.close();
     }
