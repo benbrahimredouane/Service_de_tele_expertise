@@ -22,15 +22,16 @@ import ma.youcode.teleexpertise.config.JpaLifecycle;
 import ma.youcode.teleexpertise.dto.CreerDemandeRequest;
 import ma.youcode.teleexpertise.model.DemandeExpertise;
 import ma.youcode.teleexpertise.repository.jpa.JpaDemandeExpertiseRepository;
+import ma.youcode.teleexpertise.repository.jpa.JpaSpecialisteRepository;
 import ma.youcode.teleexpertise.repository.jpa.JpaUtilisateurRepository;
-import ma.youcode.teleexpertise.repository.SpecialisteRepository;
 import ma.youcode.teleexpertise.model.Specialiste;
 import ma.youcode.teleexpertise.model.Utilisateur;
 import ma.youcode.teleexpertise.service.DemandeService;
+import jakarta.ws.rs.Produces;
 
 @Path("/demandes")
 @Consumes(MediaType.APPLICATION_JSON)
-@jakarta.ws.rs.Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class DemandeResource {
 
     @Context
@@ -83,8 +84,8 @@ public class DemandeResource {
                         
                 }
 
-            SpecialisteRepository specialisteRepository =
-                    new SpecialisteRepository(emf);
+            JpaSpecialisteRepository specialisteRepository =
+                    new JpaSpecialisteRepository(emf);
 
             String email = securityContext.getUserPrincipal().getName();
 

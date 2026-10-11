@@ -7,6 +7,6 @@ queryParams:
 auth:
   type: basic
   credentials:
-    username: sara@gmail.com
+    username: generaliste@test.com
     password: password
 order: 580237455780577

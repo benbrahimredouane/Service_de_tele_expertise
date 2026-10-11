@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 
 import ma.youcode.teleexpertise.config.JpaLifecycle;
 import ma.youcode.teleexpertise.model.Specialite;
-import ma.youcode.teleexpertise.repository.SpecialisteRepository;
+import ma.youcode.teleexpertise.repository.jpa.JpaSpecialisteRepository;
 import ma.youcode.teleexpertise.service.SpecialisteService;
 
 @Path("/specialistes")
@@ -29,7 +29,7 @@ public class SpecialisteResource {
         EntityManagerFactory emf = (EntityManagerFactory) servletContext.getAttribute(JpaLifecycle.EMF_KEY);
 
         SpecialisteService service = new SpecialisteService(
-                new SpecialisteRepository(emf));
+                new JpaSpecialisteRepository(emf));
 
         if (specialite != null) {
             try {
