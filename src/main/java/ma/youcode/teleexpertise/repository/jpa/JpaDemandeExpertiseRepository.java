@@ -122,6 +122,10 @@ public DemandeExpertise update(DemandeExpertise demande) {
             transaction.rollback();
         }
         throw e;
+    } finally {
+        em.close();
+    }
+}
 @Override
 public List<DemandeExpertise> findBySpecialisteId(int specialisteId) {
     EntityManager em = entityManagerFactory.createEntityManager();

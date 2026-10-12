@@ -15,4 +15,6 @@ public interface SpecialisteRepository {
     public List<Specialiste> findAll();
 
     public Optional<Specialiste> findByUtilisateurId(int utilisateurId);
+
+    public Optional<Specialiste> findByUtilisateurEmail(String email);
 }

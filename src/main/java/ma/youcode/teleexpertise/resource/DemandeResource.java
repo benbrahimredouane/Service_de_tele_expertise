@@ -25,14 +25,12 @@ import ma.youcode.teleexpertise.config.JpaLifecycle;
 import ma.youcode.teleexpertise.dto.CreerDemandeRequest;
 import ma.youcode.teleexpertise.dto.RepondreDemandeRequest;
 import ma.youcode.teleexpertise.model.DemandeExpertise;
-import ma.youcode.teleexpertise.repository.SpecialisteRepository;
 import ma.youcode.teleexpertise.repository.jpa.JpaDemandeExpertiseRepository;
 import ma.youcode.teleexpertise.repository.jpa.JpaSpecialisteRepository;
 import ma.youcode.teleexpertise.repository.jpa.JpaUtilisateurRepository;
 import ma.youcode.teleexpertise.model.Specialiste;
 import ma.youcode.teleexpertise.model.Utilisateur;
 import ma.youcode.teleexpertise.service.DemandeService;
-import jakarta.ws.rs.Produces;
 
 @Path("/demandes")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -45,22 +43,15 @@ public class DemandeResource {
     private DemandeService creerService() {
         EntityManagerFactory emf = (EntityManagerFactory)
                 servletContext.getAttribute(JpaLifecycle.EMF_KEY);
-    @Context
-    private SecurityContext securityContext;
-
-    @POST
-    @RolesAllowed("GENERALISTE")
-    public Response creer(CreerDemandeRequest request) {
-        EntityManagerFactory emf =
-                (EntityManagerFactory) servletContext.getAttribute(
-                        JpaLifecycle.EMF_KEY
-                );
 
         return new DemandeService(
                 new JpaDemandeExpertiseRepository(emf),
-                new SpecialisteRepository(emf)
+                new JpaSpecialisteRepository(emf)
         );
     }
+
+    @Context
+    private SecurityContext securityContext;
 
     @POST
     @RolesAllowed("GENERALISTE")
@@ -93,6 +84,7 @@ public class DemandeResource {
                 "id", demande.getId(),
                 "statut", demande.getStatut().name()
         )).build();
+}
     @GET
     @RolesAllowed({"SPECIALISTE", "GENERALISTE"})
     public Response consulter(
@@ -104,9 +96,7 @@ public class DemandeResource {
                         JpaLifecycle.EMF_KEY
                 );
 
-        DemandeService service = new DemandeService(
-                new JpaDemandeExpertiseRepository(emf)
-        );
+        DemandeService service = creerService();
 
        
         if (securityContext.isUserInRole("SPECIALISTE")) {

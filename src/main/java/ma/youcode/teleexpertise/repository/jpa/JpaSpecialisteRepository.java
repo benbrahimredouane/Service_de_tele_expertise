@@ -55,6 +55,23 @@ public class JpaSpecialisteRepository implements SpecialisteRepository {
         }
     }
 
+    @Override
+    public Optional<Specialiste> findByUtilisateurEmail(String email) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            return entityManager.createQuery(
+                    "SELECT s FROM Specialiste s WHERE s.utilisateur.email = :email",
+                    Specialiste.class
+            )
+                    .setParameter("email", email)
+                    .getResultStream()
+                    .findFirst();
+        } finally {
+            entityManager.close();
+        }
+    }
+
     public Optional<Specialiste> findByUtilisateurId(int utilisateurId) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
