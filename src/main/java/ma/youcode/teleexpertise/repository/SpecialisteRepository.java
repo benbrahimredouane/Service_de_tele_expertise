@@ -76,4 +76,22 @@ public class SpecialisteRepository {
             entityManager.close();
         }
     }
+
+    public Optional<Specialiste> findByUtilisateurEmail(String email) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+    try {
+        return entityManager
+                .createQuery(
+                        "SELECT s FROM Specialiste s " +
+                        "WHERE s.utilisateur.email = :email",
+                        Specialiste.class
+                )
+                .setParameter("email", email)
+                .getResultStream()
+                .findFirst();
+    } finally {
+        entityManager.close();
+    }
+}
 }
