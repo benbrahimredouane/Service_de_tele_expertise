@@ -1,0 +1,5 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/demandes?consultationId=1
+url: ""
+method: GET
+order: 580237455785577

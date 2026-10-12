@@ -10,6 +10,7 @@ import ma.youcode.teleexpertise.error.ApiExceptionMapper;
 import ma.youcode.teleexpertise.filter.BasicAuthFilter;
 import ma.youcode.teleexpertise.resource.DemandeResource;
 import ma.youcode.teleexpertise.resource.PingResource;
+import ma.youcode.teleexpertise.resource.SpecialisteResource;
 
 @ApplicationPath("/api")
 public class ApiApplication extends ResourceConfig {
@@ -22,5 +23,6 @@ public class ApiApplication extends ResourceConfig {
 
         register(BasicAuthFilter.class);
         register(RolesAllowedDynamicFeature.class);
+        register(SpecialisteResource.class);
     }
 }

@@ -1,5 +1,6 @@
 package ma.youcode.teleexpertise.repository.jpa;
 
+import java.util.List;
 import java.util.Optional;
 
 import jakarta.persistence.EntityManager;
@@ -85,6 +86,22 @@ public boolean existsSpecialisteById(int specialisteId) {
         .getSingleResult();
 
         return count.longValue() > 0;
+    } finally {
+        em.close();
+    }
+}
+@Override
+public List<DemandeExpertise> findBySpecialisteId(int specialisteId) {
+    EntityManager em = entityManagerFactory.createEntityManager();
+
+    try {
+        return em.createQuery(
+                "SELECT d FROM DemandeExpertise d " +
+                "WHERE d.specialisteId = :specialisteId",
+                DemandeExpertise.class
+            )
+            .setParameter("specialisteId", specialisteId)
+            .getResultList();
     } finally {
         em.close();
     }
