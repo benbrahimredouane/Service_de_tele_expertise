@@ -6,6 +6,6 @@ method: GET
 auth:
   type: basic
   credentials:
-    username: ahmed@gmail.com
+    username: generaliste@test.com
     password: password
 order: 580237455779577
