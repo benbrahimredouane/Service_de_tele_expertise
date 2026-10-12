@@ -126,7 +126,6 @@ public class DemandeService {
 
         return repository.update(demande);
     }
-}
         
 public List<DemandeExpertise> listerParSpecialiste(
         int specialisteId,

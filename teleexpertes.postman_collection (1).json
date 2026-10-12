@@ -1,0 +1,517 @@
+{
+  "info": {
+    "_postman_id": "3adb136b-1890-4062-b59c-311cd6c4f854",
+    "name": "teleexpertes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53036589",
+    "_collection_link": "https://go.postman.co/collection/53036589-3adb136b-1890-4062-b59c-311cd6c4f854?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "le test de US2",
+      "item": [
+        {
+          "name": "priorite inconnue",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consultationId\": 1,\n  \"specialisteId\": 1,\n  \"question\": \"\",\n  \"priorite\": \"NORMALE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "le question est obligatoire",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consultationId\": 1,\n  \"specialisteId\": 1,\n  \"question\": \"\",\n  \"priorite\": \"NORMALE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ressource introuvable",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consultationId\": 999999,\n  \"specialisteId\": 1,\n  \"question\": \"Quel traitement recommandez-vous ?\",\n  \"priorite\": \"NORMALE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "404 not found",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consultationId\": 1,\n  \"specialisteId\": 999999,\n  \"question\": \"Quel traitement recommandez-vous ?\",\n  \"priorite\": \"NORMALE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "le spécialiste inexistant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consultationId\": 2,\n  \"specialisteId\": 999999,\n  \"question\": \"Quel traitement recommandez-vous ?\",\n  \"priorite\": \"NORMALE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "auth",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/ping",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "ping"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "not auth",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/ping",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "ping"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "le test de US1",
+      "item": [
+        {
+          "name": "list de specialistes",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/specialistes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "specialistes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "list par specialite",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/specialistes?specialite=CARDIOLOGIE",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "specialistes"
+              ],
+              "query": [
+                {
+                  "key": "specialite",
+                  "value": "CARDIOLOGIE"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "test US4",
+      "item": [
+        {
+          "name": "terminee",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "ahmed@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"avis\": \"Une consultation en cardiologie est nécessaire.\",\n  \"recommandations\": \"Faire un ECG.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes/2/reponse",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes",
+                "2",
+                "reponse"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "error 403",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "youssef@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "general123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"avis\": \"Une consultation en cardiologie est nécessaire.\",\n  \"recommandations\": \"Faire un ECG.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes/2/reponse",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes",
+                "2",
+                "reponse"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "error 404",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "youssef@gmail.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "general123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"avis\": \"Une consultation en cardiologie est nécessaire.\",\n  \"recommandations\": \"Faire un ECG.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/teleexpertise/api/demandes/2/repons",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "teleexpertise",
+                "api",
+                "demandes",
+                "2",
+                "repons"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
