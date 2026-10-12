@@ -1,0 +1,12 @@
+$kind: http-request
+name: http://localhost:8080/teleexpertise/api/demandes?statut=EN_ATTENTE
+url: http://localhost:8080/teleexpertise/api/demandes?statut=EN_ATTENTE
+method: GET
+queryParams:
+  statut: EN_ATTENTE
+auth:
+  type: basic
+  credentials:
+    username: sara@gmail.com
+    password: password
+order: 580237455782577

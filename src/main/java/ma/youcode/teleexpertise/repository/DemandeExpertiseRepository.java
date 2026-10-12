@@ -1,5 +1,6 @@
 package ma.youcode.teleexpertise.repository;
 
+import java.util.List;
 import java.util.Optional;
 import ma.youcode.teleexpertise.model.DemandeExpertise;
 
@@ -17,4 +18,7 @@ public interface DemandeExpertiseRepository {
 
     DemandeExpertise update(DemandeExpertise demande);
 
+
+    List<DemandeExpertise> findBySpecialisteId(int specialisteId);
+    
 }
